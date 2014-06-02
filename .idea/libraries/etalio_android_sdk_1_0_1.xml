@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="etalio-android-sdk-1.0.1">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/build/exploded-aar/com.etalio/etalio-android-sdk/1.0.1/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/exploded-aar/com.etalio/etalio-android-sdk/1.0.1/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
