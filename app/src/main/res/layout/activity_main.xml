@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,11 +6,100 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="si.teandro.MainActivity">
+    android:background="#FFFFFF"
+    android:id="@+id/activity_home_screen"
+    tools:context="si.teandro.MainActivity"
+    >
 
-    <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/test_image"
+            android:src="@drawable/profil"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:layout_span="3"
+            android:layout_gravity="center"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:text=""
+            android:layout_width="20dp"/>
+        <TextView
+            android:id="@+id/profile_name"
+            android:text="@string/profile_name"
+            android:layout_weight="1"/>
+        <TextView
+            android:text=""
+            android:layout_width="20dp"/>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView android:text=""/>
+
+        <TextView
+            android:id="@+id/profile_age"
+            android:text="@string/profile_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView android:text=""/>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView android:text=""/>
+        <TextView
+            android:id="@+id/profile_location"
+            android:text="@string/profile_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView android:text=""/>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView android:text=""/>
+        <TextView
+            android:id="@+id/profile_wisdom"
+            android:text="@string/profile_wisdom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView android:text=""/>
+
+    </TableRow>
+
+</TableLayout>
+
+
+
+
+
+
+

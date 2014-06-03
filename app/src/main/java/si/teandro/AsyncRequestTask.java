@@ -3,24 +3,28 @@ package si.teandro;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import si.teandro.model.EtalioUser;
+
 /**
  * Created by jernej on 31.5.14.
  */
-class RequestTask extends AsyncTask<String, String, String> {
+class AsyncRequestTask extends AsyncTask<String, String, String> {
 
-    private static final String TAG = RequestTask.class.getCanonicalName();
+    private static final String TAG = AsyncRequestTask.class.getCanonicalName();
+    private EtalioUser profile;
 
     @Override
     protected String doInBackground(String... uri) {
@@ -30,6 +34,8 @@ class RequestTask extends AsyncTask<String, String, String> {
 
         HttpPost post = new HttpPost(uri[0]);
         post.addHeader("token",uri[1]);
+
+
 
         try {
             response = httpclient.execute(post);
@@ -50,7 +56,14 @@ class RequestTask extends AsyncTask<String, String, String> {
             Log.e(TAG, e.getMessage());
         }
 
+        /*
         Log.i(TAG, responseString);
+
+        Gson gson = new Gson();
+        profile = gson.fromJson(responseString, EtalioUser.class);
+        */
+
+        //Log.i(TAG,"Name : "+profile.getName());
 
         return responseString;
     }
@@ -58,6 +71,15 @@ class RequestTask extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        //Do anything with response..
+
+        Log.i(TAG, result);
+
+        Gson gson = new Gson();
+        profile = gson.fromJson(result, EtalioUser.class);
+
+    }
+
+    public EtalioUser getProfile() {
+        return profile;
     }
 }

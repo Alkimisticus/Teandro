@@ -4,5 +4,9 @@
     <string name="app_name">Teandro</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="profile_name">Mario Fernandez</string>
+    <string name="profile_age">Age 28</string>
+    <string name="profile_location">Ljubljana, Slovenia</string>
+    <string name="profile_wisdom">I like to fish the fish, see the sea and drink the drink.</string>
 
 </resources>
