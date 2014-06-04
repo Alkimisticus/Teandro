@@ -33,9 +33,11 @@
     </TableRow>
 
     <TableRow
+        android:id="@+id/row1"
         android:layout_width="fill_parent"
         android:layout_height="1dip"
         android:background="#00000000"
+        android:visibility="invisible"
         >
         <View
             android:layout_width="fill_parent"
@@ -45,10 +47,13 @@
     </TableRow>
 
     <TableRow
+        android:id="@+id/row2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:visibility="invisible"
+        >
 
         <TextView
             android:text=""
@@ -64,9 +69,11 @@
     </TableRow>
 
     <TableRow
+        android:id="@+id/row3"
         android:layout_width="fill_parent"
         android:layout_height="1dip"
         android:background="#00000000"
+        android:visibility="invisible"
         >
         <View
             android:layout_width="fill_parent"
@@ -76,10 +83,13 @@
     </TableRow>
 
     <TableRow
+        android:id="@+id/row4"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:visibility="invisible"
+        >
 
         <TextView android:text=""/>
 
@@ -95,9 +105,11 @@
     </TableRow>
 
     <TableRow
+        android:id="@+id/row5"
         android:layout_width="fill_parent"
         android:layout_height="1dip"
         android:background="#00000000"
+        android:visibility="invisible"
         >
         <View
             android:layout_width="fill_parent"
@@ -107,10 +119,13 @@
     </TableRow>
 
     <TableRow
+        android:id="@+id/row6"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:visibility="invisible"
+        >
 
         <TextView android:text=""/>
         <TextView
@@ -124,9 +139,11 @@
     </TableRow>
 
     <TableRow
+        android:id="@+id/row7"
         android:layout_width="fill_parent"
         android:layout_height="1dip"
         android:background="#00000000"
+        android:visibility="invisible"
         >
         <View
             android:layout_width="fill_parent"
@@ -136,10 +153,13 @@
     </TableRow>
 
     <TableRow
+        android:id="@+id/row8"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:visibility="invisible"
+        >
 
         <TextView android:text=""/>
         <TextView
@@ -154,9 +174,11 @@
 
 
     <TableRow
+        android:id="@+id/row9"
         android:layout_width="fill_parent"
         android:layout_height="1dip"
         android:background="#00000000"
+        android:visibility="invisible"
         >
         <View
             android:layout_width="fill_parent"

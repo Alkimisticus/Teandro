@@ -11,17 +11,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.etalio.android.AuthenticationCallback;
 import com.etalio.android.EtalioAPI;
 import com.etalio.android.client.exception.EtalioAuthorizationCodeException;
 import com.etalio.android.client.models.EtalioToken;
-import com.etalio.android.client.models.User;
 import com.google.gson.Gson;
 
 import org.apache.http.HttpResponse;
@@ -60,6 +61,7 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
         mEtalio = new EtalioAPI(this, CLIENT_ID, CLIENT_SECRET);
 
         if (NOT_SIGN_IN) {
+            //TODO Potrebno bi bilo narediti preko kakšne interne shrambe, ne kr na inicializacijo razreda
             mEtalio.initiateEtalioSignIn(this);
             NOT_SIGN_IN = false;
         }
@@ -74,8 +76,9 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
                 if (token != null) {
 
                     RequestTask request = new RequestTask();
+
+                    //TODO Potrebno bi bilo naredi asinhrono
                     request.execute("http://otro.me/devtest/user", token.getAccessToken()).get();
-                    //profile = request.getProfile();
 
                     if (profile == null)
                         Log.i(TAG, "Profil se ni napolnil !");
@@ -90,29 +93,18 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
             Log.e(TAG, "ExecutionException : " + e.getMessage());
         }
 
+        setContentView(R.layout.activity_main);
 
-            setContentView(R.layout.activity_main);
-
-
-
-
-
-
-        // setting values
-
-        if(profile == null)
-            Log.i(TAG, "Profil je prazen !");
         if(profile != null) {
-            Log.i(TAG, "Profil je POLN !");
 
             Typeface font_normal = Typeface.createFromAsset(getAssets(), "NotoSansUI-Regular.ttf");
-            //Typeface font_bold = Typeface.createFromAsset(getAssets(), "NotoSansUI-Bold.ttf");
 
             TextView profile_name = (TextView) findViewById(R.id.profile_name);
             profile_name.setText(profile.getName());
             profile_name.setTypeface(font_normal,Typeface.BOLD);
 
             TextView profile_age = (TextView) findViewById(R.id.profile_age);
+            //TODO To ni vredu, ker ni lokalizirano
             profile_age.setText("Age " + profile.getAge());
             profile_age.setTypeface(font_normal,Typeface.NORMAL);
 
@@ -122,23 +114,56 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
 
             TextView profile_bio = (TextView) findViewById(R.id.profile_wisdom);
             profile_bio.setText(profile.getBio());
-            profile_bio.setTypeface(font_normal,Typeface.NORMAL);
+            profile_bio.setTypeface(font_normal, Typeface.NORMAL);
 
-            View currentView = (View) findViewById(R.id.activity_home_screen);
+            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.abc_slide_out_bottom);
+
+            TableRow row1 = (TableRow) findViewById(R.id.row1);
+            row1.setVisibility(View.INVISIBLE);
+            row1.setAnimation(animation);
+            TableRow row2 = (TableRow) findViewById(R.id.row2);
+            row2.setVisibility(View.INVISIBLE);
+            row2.setAnimation(animation);
+            TableRow row3 = (TableRow) findViewById(R.id.row3);
+            row3.setVisibility(View.INVISIBLE);
+            row3.setAnimation(animation);
+            TableRow row4 = (TableRow) findViewById(R.id.row4);
+            row4.setVisibility(View.INVISIBLE);
+            row4.setAnimation(animation);
+            TableRow row5 = (TableRow) findViewById(R.id.row5);
+            row5.setVisibility(View.INVISIBLE);
+            row5.setAnimation(animation);
+            TableRow row6 = (TableRow) findViewById(R.id.row6);
+            row6.setVisibility(View.INVISIBLE);
+            row6.setAnimation(animation);
+            TableRow row7 = (TableRow) findViewById(R.id.row7);
+            row7.setVisibility(View.INVISIBLE);
+            row7.setAnimation(animation);
+            TableRow row8 = (TableRow) findViewById(R.id.row8);
+            row8.setVisibility(View.INVISIBLE);
+            row8.setAnimation(animation);
+            TableRow row9 = (TableRow) findViewById(R.id.row9);
+            row9.setVisibility(View.INVISIBLE);
+            row9.setAnimation(animation);
+
+            View currentView = findViewById(R.id.activity_home_screen);
             changeBackgroundColor(currentView,profile.getCharacter().getBody().getColor());
 
+            inflateImage();
+
+            animation.startNow();
+
+            row1.setVisibility(View.VISIBLE);
+            row2.setVisibility(View.VISIBLE);
+            row3.setVisibility(View.VISIBLE);
+            row4.setVisibility(View.VISIBLE);
+            row5.setVisibility(View.VISIBLE);
+            row6.setVisibility(View.VISIBLE);
+            row7.setVisibility(View.VISIBLE);
+            row8.setVisibility(View.VISIBLE);
+            row9.setVisibility(View.VISIBLE);
+
         }
-
-        inflateImage();
-
-
-
-
-        //currentView.startAnimation(AnimationUtils.);
-
-        //R.string.profile_age
-
-
 
     }
 
@@ -204,21 +229,6 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
     @Override
     public void onAuthenticationSuccess() {
         Log.i(TAG, "onAuthenticationSuccess : Authentication succeeded");
-
-        /*
-        EtalioToken token = mEtalio.getEtalioToken();
-
-        if(token != null) {
-
-            RequestTask request = new RequestTask();
-            request.execute("http://otro.me/devtest/user", token.getAccessToken());
-            //profile = request.getProfile();
-
-            if(profile == null)
-                Log.i(TAG, "Profil se ni napolnil !");
-
-        }
-        */
     }
 
     @Override
@@ -250,7 +260,6 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
 
     private class RequestTask extends AsyncTask<String, String, String> {
 
-
         @Override
         protected String doInBackground(String... uri) {
             HttpClient httpclient = new DefaultHttpClient();
@@ -280,13 +289,10 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
             }
 
 
-        Log.i(TAG, responseString);
+            Log.i(TAG, responseString);
 
-        Gson gson = new Gson();
-        profile = gson.fromJson(responseString, EtalioUser.class);
-
-
-            //Log.i(TAG,"Name : "+profile.getName());
+            Gson gson = new Gson();
+            profile = gson.fromJson(responseString, EtalioUser.class);
 
             return responseString;
         }
@@ -294,15 +300,6 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-
-
-            /*
-            Log.i(TAG, result);
-
-            Gson gson = new Gson();
-            profile = gson.fromJson(result, EtalioUser.class);
-            Log.i(TAG, profile.toString());
-            */
         }
 
     }
