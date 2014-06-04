@@ -150,7 +150,7 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
         (new Thread(){
             @Override
             public void run(){
-                for(int i=10; i<100; i = i+10){
+                for(int i=10; i<400; i = i+10){
                     final int f = i;
                     handler.post(new Runnable(){
                         public void run(){
@@ -159,7 +159,7 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
                         }
                     });
                     // next will pause the thread for some time
-                    try{ sleep(100); }
+                    try{ sleep(50); }
                     catch(InterruptedException e) { break; }
                 }
             }
