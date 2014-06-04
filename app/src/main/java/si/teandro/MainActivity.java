@@ -2,6 +2,7 @@ package si.teandro;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
@@ -103,14 +104,31 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
             Log.i(TAG, "Profil je prazen !");
         if(profile != null) {
             Log.i(TAG, "Profil je POLN !");
-            ((TextView) findViewById(R.id.profile_name)).setText(profile.getName());
-            ((TextView) findViewById(R.id.profile_age)).setText("Age : " + profile.getAge());
-            ((TextView) findViewById(R.id.profile_location)).setText(profile.getLocation());
-            ((TextView) findViewById(R.id.profile_wisdom)).setText(profile.getBio());
+
+            Typeface font_normal = Typeface.createFromAsset(getAssets(), "NotoSansUI-Regular.ttf");
+            //Typeface font_bold = Typeface.createFromAsset(getAssets(), "NotoSansUI-Bold.ttf");
+
+            TextView profile_name = (TextView) findViewById(R.id.profile_name);
+            profile_name.setText(profile.getName());
+            profile_name.setTypeface(font_normal,Typeface.BOLD);
+
+            TextView profile_age = (TextView) findViewById(R.id.profile_age);
+            profile_age.setText("Age " + profile.getAge());
+            profile_age.setTypeface(font_normal,Typeface.NORMAL);
+
+            TextView profile_location = (TextView) findViewById(R.id.profile_location);
+            profile_location.setText(profile.getLocation());
+            profile_location.setTypeface(font_normal,Typeface.NORMAL);
+
+            TextView profile_bio = (TextView) findViewById(R.id.profile_wisdom);
+            profile_bio.setText(profile.getBio());
+            profile_bio.setTypeface(font_normal,Typeface.NORMAL);
+
+            View currentView = (View) findViewById(R.id.activity_home_screen);
+            changeBackgroundColor(currentView,profile.getCharacter().getBody().getColor());
+
         }
 
-        View currentView = (View) findViewById(R.id.activity_home_screen);
-        changeBackgroundColor(currentView);
         inflateImage();
 
 
@@ -150,7 +168,12 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
     }
 
 
-    private void changeBackgroundColor(final View currentView) {
+    private void changeBackgroundColor(final View currentView, String body_color) {
+
+
+        final int red = Integer.valueOf( body_color.substring( 0, 2 ), 16 );
+        final int green = Integer.valueOf( body_color.substring( 2, 4 ), 16 );
+        final int blue = Integer.valueOf( body_color.substring( 4, 6 ), 16 );
 
         (new Thread(){
             @Override
@@ -159,7 +182,7 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
                     final int f = i;
                     handler.post(new Runnable(){
                         public void run(){
-                            currentView.setBackgroundColor(Color.argb(255, 255-f, 255-f, 255-f));
+                            currentView.setBackgroundColor(Color.argb(f, red, green, blue));
                         }
                     });
                     // next will pause the thread for some time
