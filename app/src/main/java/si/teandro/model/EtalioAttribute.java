@@ -8,6 +8,11 @@ public class EtalioAttribute {
     private String color;
     private String kind;
 
+    public EtalioAttribute(String kind, String color) {
+        this.color = color;
+        this.kind = kind;
+    }
+
     public String getColor() {
         return color;
     }
