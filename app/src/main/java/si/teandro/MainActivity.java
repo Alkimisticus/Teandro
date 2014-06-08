@@ -53,8 +53,6 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
 
     private static boolean NOT_SIGN_IN = true;
 
-    Handler handler = new Handler();
-
     private EtalioAPI mEtalio;
     private static EtalioUser profile = defaultUser();
 
@@ -62,7 +60,6 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         if(this.isNetworkAvailable()) {
 
@@ -148,12 +145,11 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
         View currentView = findViewById(R.id.activity_home_screen);
         changeBackgroundColor(currentView,profile.getCharacter().getBody().getColor());
 
+        // animate image
         ImageView profile_image = (ImageView) findViewById(R.id.test_image);
         profile_image.startAnimation(AnimationUtils.loadAnimation(this, R.anim.inflate_picture));
 
         animation.startNow();
-
-
 
     }
 
@@ -161,7 +157,7 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
      * Change background color of specified view, to specified color, duration of animation is 2s.
      * @link http://stackoverflow.com/questions/11097693/android-objectanimator-animate-backgroundcolor-of-layout
      * @param currentView android view
-     * @param body_color final backgound color
+     * @param body_color final backgound color ,format hex without leading #, no validation
      */
     private void changeBackgroundColor(final View currentView, String body_color) {
 
@@ -176,6 +172,11 @@ public class MainActivity extends ActionBarActivity implements AuthenticationCal
 
     }
 
+    /**
+     * Check for internetconnection
+     * @link http://stackoverflow.com/questions/4238921/android-detect-whether-there-is-an-internet-connection-available
+     * @return true if network is available
+     */
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
